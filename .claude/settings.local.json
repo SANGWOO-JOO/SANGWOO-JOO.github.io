@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/sangwoo/Downloads/**)",
+      "Bash(file:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>주상우 - Backend Developer Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.7;
+            color: #1a202c;
+            background-color: #f7fafc;
+            font-weight: 400;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: right;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle at 30% 50%, rgba(139, 92, 246, 0.3) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(50px, 50px) rotate(180deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-content .highlight {
+            color: #fbbf24;
+            font-weight: 600;
+            text-shadow: 0 0 30px rgba(251, 191, 36, 0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease 0.2s backwards;
+            font-weight: 300;
+            letter-spacing: 0.02em;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 100px 0;
+            background: white;
+        }
+
+        section:nth-child(even) {
+            background: #f7fafc;
+        }
+
+        h2 {
+            font-size: 2.75rem;
+            margin-bottom: 4rem;
+            color: #1a202c;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 100%);
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.9rem;
+            margin-bottom: 1.25rem;
+            color: #2d3748;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        /* Intro Section */
+        .intro-text {
+            font-size: 1.25rem;
+            line-height: 2.1;
+            color: #475569;
+            margin-bottom: 3rem;
+            font-weight: 400;
+        }
+
+        .intro-text p {
+            margin-bottom: 1rem;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 0;
+        }
+
+        .timeline-item {
+            margin-bottom: 3rem;
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 2rem;
+            padding: 1.5rem;
+            border-radius: 12px;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+            transform: translateX(8px);
+        }
+
+        .timeline-date {
+            color: #6366f1;
+            font-weight: 600;
+            padding-top: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .timeline-content h3 {
+            color: #1a202c;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .timeline-content h4 {
+            color: #64748b;
+            font-size: 1.05rem;
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+        }
+
+        .timeline-content p {
+            color: #475569;
+            margin-bottom: 0.5rem;
+            line-height: 1.7;
+        }
+
+        .timeline-content ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 0.5rem;
+        }
+
+        .timeline-content ul li {
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            color: #475569;
+            transition: all 0.2s ease;
+        }
+
+        .timeline-content ul li:hover {
+            transform: translateX(4px);
+            color: #1e293b;
+        }
+
+        .timeline-content ul li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #6366f1;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        /* Tech Stack */
+        .tech-stack {
+            margin-bottom: 4rem;
+        }
+
+        .tech-category {
+            margin-bottom: 2rem;
+        }
+
+        .tech-category h4 {
+            color: #718096;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tech-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .tech-badge {
+            background: #e2e8f0;
+            padding: 0.6rem 1.2rem;
+            border-radius: 24px;
+            font-size: 0.95rem;
+            color: #475569;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 500;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+
+        .tech-badge:hover {
+            background: #6366f1;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
+        }
+
+        .tech-badge.expert {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+        }
+
+        .tech-badge.expert:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(99, 102, 241, 0.35);
+        }
+
+        .tech-badge.intermediate {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+        }
+
+        .tech-badge.intermediate:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(16, 185, 129, 0.35);
+        }
+
+        /* Company & Project Section */
+        .company-section {
+            margin-bottom: 4rem;
+        }
+
+        .company-name {
+            font-size: 1.9rem;
+            color: #1a202c;
+            margin-bottom: 3rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #e2e8f0;
+            font-weight: 600;
+        }
+
+        .project {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .project:hover {
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.06);
+            transform: translateY(-4px);
+        }
+
+        .project-left {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+            border-left: 4px solid #6366f1;
+            align-self: start;
+        }
+
+        .project-period {
+            color: #718096;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .project-name {
+            font-size: 1.05rem;
+            color: #1a202c;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .project-tech .tech-badge {
+            font-size: 0.75rem;
+            padding: 0.4rem 0.8rem;
+        }
+
+        .project-right {
+            padding-top: 0;
+        }
+
+        .project-detail {
+            margin-bottom: 2.5rem;
+        }
+
+        .project-detail h5 {
+            font-size: 1.15rem;
+            color: #1e293b;
+            margin-bottom: 1.25rem;
+            font-weight: 600;
+            padding-left: 1rem;
+            border-left: 3px solid #6366f1;
+            line-height: 1.6;
+        }
+
+        .project-detail ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .project-detail ul li {
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+            position: relative;
+            color: #475569;
+            line-height: 1.8;
+            transition: all 0.2s ease;
+        }
+
+        .project-detail ul li:hover {
+            transform: translateX(4px);
+            color: #1e293b;
+        }
+
+        .project-detail ul li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #6366f1;
+            font-weight: bold;
+        }
+
+        .project-result {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid #e2e8f0;
+        }
+
+        .project-result h6 {
+            font-size: 1.05rem;
+            color: #6366f1;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 0.9rem;
+        }
+
+        .project-result ul li {
+            color: #1e293b;
+            font-weight: 500;
+        }
+
+        .project-result ul li:before {
+            content: "✓";
+            color: #10b981;
+            font-size: 1.1em;
+        }
+
+        /* Contact Section */
+        .contact-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .contact-links a {
+            color: #6366f1;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            font-weight: 500;
+        }
+
+        .contact-links a:hover {
+            color: white;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(99, 102, 241, 0.25);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: #cbd5e1;
+            text-align: center;
+            padding: 3rem 2rem;
+            font-size: 0.95rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
+            .company-name {
+                font-size: 1.4rem;
+            }
+
+            .project {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .project-left {
+                padding-left: 1rem;
+                padding-right: 0;
+            }
+
+            .project-name {
+                font-size: 1.1rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 40px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>안녕하세요,<br><span class="highlight">Backend Developer</span><br>주상우 입니다;</h1>
+            <p>portfolio. last updated 2025-10-16</p>
+        </div>
+    </div>
+
+    <!-- Intro Section -->
+    <section id="intro">
+        <div class="container">
+            <div class="intro-text">
+                근본 원인을 찾아 해결하는 3년차 Backend Engineer입니다.<br>
+                개발부터 운영까지 전 과정을 경험했으며, 데이터 분석으로 시스템을 개선합니다.<br>
+                기술 블로그와 오픈소스 기여로 지식을 나누며 함께 성장합니다.
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <h2>열심히 달리고 있어요</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2023.08 ~ 재직중</div>
+                    <div class="timeline-content">
+                        <h3>디에스앤텍</h3>
+                        <h4>서버팀 사원 (2년 | 정규직)</h4>
+                        <p><strong>담당 업무</strong></p>
+                        <ul>
+                            <li>3개 보안 솔루션 백엔드 개발 및 RESTful API 설계/구현</li>
+                            <li>운영 서버 실시간 모니터링, 장애 원인 분석 및 해결, 재발 방지 개선 방안 적용</li>
+                            <li>시스템 성능 병목 분석 및 최적화, 인프라 확장성 확보, 운영 자동화 도구 개발</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section id="skills">
+        <div class="container">
+            <h2>이만큼 노력하고 있어요</h2>
+
+            <div class="tech-stack">
+                <div class="tech-category">
+                    <h4>꽤 친한 사이</h4>
+                    <div class="tech-items">
+                        <span class="tech-badge expert">Java</span>
+                        <span class="tech-badge expert">Spring Boot</span>
+                        <span class="tech-badge expert">Spring MVC</span>
+                        <span class="tech-badge expert">QueryDSL</span>
+                        <span class="tech-badge expert">JPA</span>
+                        <span class="tech-badge expert">MySQL</span>
+                        <span class="tech-badge expert">Redis</span>
+                        <span class="tech-badge expert">Git</span>
+                        <span class="tech-badge expert">Grafana</span>
+                        <span class="tech-badge expert">Prometheus</span>
+                        <span class="tech-badge expert">Docker</span>
+                    </div>
+                </div>
+
+                <div class="tech-category">
+                    <h4>점점 친해지고 있는 사이</h4>
+                    <div class="tech-items">
+                        <span class="tech-badge intermediate">Kubernetes</span>
+                        <span class="tech-badge intermediate">AWS</span>
+                        <span class="tech-badge intermediate">Scouter</span>
+                        <span class="tech-badge intermediate">JavaScript</span>
+                    </div>
+                </div>
+
+                <div class="tech-category">
+                    <h4>도움을 많이 받는 사이</h4>
+                    <div class="tech-items">
+                        <span class="tech-badge">SonarCube</span>
+                        <span class="tech-badge">JavaScript</span>
+                        <span class="tech-badge">JMeter</span>
+                        <span class="tech-badge">Scouter</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2>다양한 경험을 했어요</h2>
+
+            <div class="company-section">
+                <h3 class="company-name">⚡ 디에스앤텍 | 2023.08 ~ 재직중</h3>
+
+                <!-- 프로젝트 1: 데이터 기반 모니터링 시스템 구축 -->
+                <div class="project">
+                    <div class="project-left">
+                        <div class="project-period">2024.11 ~ 2025.09</div>
+                        <h4 class="project-name">📊 모니터링 시스템 구축</h4>
+                        <div class="project-tech">
+                            <span class="tech-badge">Kubernetes(K3s)</span>
+                            <span class="tech-badge">Spring Boot 3.4.x</span>
+                            <span class="tech-badge">Actuator</span>
+                            <span class="tech-badge">Prometheus</span>
+                            <span class="tech-badge">Grafana 11.x</span>
+                            <span class="tech-badge">JMeter</span>
+                        </div>
+                    </div>
+
+                    <div class="project-right">
+                        <div class="project-detail">
+                            <h5>고가용성 아키텍처로 서비스 중단 제로 달성</h5>
+                            <ul>
+                                <li>일일 수백만 건의 요청을 안정적으로 처리하기 위해 K3s 기반의 고가용성 분산 아키텍처 구축</li>
+                                <li>3개 노드 클러스터 구축으로 서버 장애 시 자동 복구 메커니즘 구현</li>
+                                <li>트래픽 증가 시 중단 없는 수평적 확장 가능한 구조 설계</li>
+                            </ul>
+                        </div>
+
+                        <div class="project-detail">
+                            <h5>데이터로 말하는 모니터링 체계</h5>
+                            <ul>
+                                <li>Prometheus와 Grafana를 활용한 데이터 기반 모니터링 시스템을 구축하여 '추측'이 아닌 '데이터'로 장애 원인 분석</li>
+                                <li>Spring Boot Actuator와 Node Exporter로 애플리케이션/인프라 지표 수집</li>
+                                <li>Prometheus 서버에서 분산 환경의 모든 지표를 중앙 집중식으로 관리</li>
+                                <li>Grafana 대시보드로 실시간 시각화 및 임계치 기반 자동 알람 구현</li>
+                                <li>JMeter 부하 테스트로 시스템 성능 검증 및 리포팅</li>
+                            </ul>
+                            <div class="project-result">
+                                <h6>성과</h6>
+                                <ul>
+                                    <li>노드 장애 발생 시에도 자동 복구로 서비스 연속성 100%에 가깝게 확보</li>
+                                    <li>데이터 기반 정확한 원인 분석으로 평균 장애 해결 시간 대폭 단축</li>
+                                    <li>실시간 모니터링과 자동 알람으로 장애 사전 감지 및 신속 대응</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 프로젝트 2: 대규모 데이터 조회 성능 최적화 -->
+                <div class="project">
+                    <div class="project-left">
+                        <div class="project-period">2024.05 ~ 2024.10</div>
+                        <h4 class="project-name">⚡ 대규모 데이터 조회 성능 최적화</h4>
+                        <div class="project-tech">
+                            <span class="tech-badge">Spring Boot 3.4.x</span>
+                            <span class="tech-badge">QueryDSL</span>
+                            <span class="tech-badge">MySQL 8</span>
+                            <span class="tech-badge">Redis</span>
+                            <span class="tech-badge">Scouter</span>
+                        </div>
+                    </div>
+
+                    <div class="project-right">
+                        <div class="project-detail">
+                            <h5>93% 성능 개선, 조회 속도를 비약적으로 향상</h5>
+                            <ul>
+                                <li>백오피스 시스템의 로그 조회와 통계 대시보드에서 발생한 심각한 성능 저하 문제를 동적 검색, 도메인별 페이지네이션, 캐싱으로 해결</li>
+                                <li>쿼리 실행 계획 분석으로 풀 테이블 스캔 구간 식별</li>
+                                <li>APM 도구(Scouter)로 슬로우 쿼리 분석하여 최적화 우선순위 결정</li>
+                            </ul>
+                        </div>
+
+                        <div class="project-detail">
+                            <h5>유연한 동적 검색 조건 구현</h5>
+                            <ul>
+                                <li>QueryDSL BooleanBuilder를 활용한 동적 검색 조건 구현</li>
+                                <li>구분, IP, 사용자명, 회사명, 날짜 범위 등 다중 필터 지원</li>
+                                <li>복잡한 조건 조합에도 최적화된 쿼리 생성</li>
+                            </ul>
+                        </div>
+
+                        <div class="project-detail">
+                            <h5>도메인 특성에 맞는 페이지네이션 전략</h5>
+                            <ul>
+                                <li>대용량 로그 조회는 커서 기반 페이지네이션으로 구현</li>
+                                <li>사용자/파트너사 목록 조회는 OFFSET 기반 페이지네이션 적용</li>
+                                <li>도메인 특성 분석으로 각 상황에 최적화된 방식 선택</li>
+                            </ul>
+                        </div>
+
+                        <div class="project-detail">
+                            <h5>캐싱으로 데이터베이스 부하 대폭 감소</h5>
+                            <ul>
+                                <li>@Cacheable 기반 캐싱을 대시보드 통계 API에 적용</li>
+                                <li>5분 TTL 설정으로 DB 접근 최소화</li>
+                                <li>캐시 키 기반 자동 갱신 로직으로 데이터 신선도 유지</li>
+                            </ul>
+                        </div>
+
+                        <div class="project-detail">
+                            <h5>Full-Text Search로 검색 성능 개선</h5>
+                            <ul>
+                                <li>MySQL Full-Text Index와 MATCH AGAINST 네이티브 쿼리 활용</li>
+                                <li>7개 컬럼에 대한 BOOLEAN MODE 키워드 검색 구현</li>
+                                <li>복잡한 LIKE 쿼리 대비 검색 성능 대폭 개선</li>
+                            </ul>
+                            <div class="project-result">
+                                <h6>성과</h6>
+                                <ul>
+                                    <li>캐싱 도입으로 대시보드 API 응답 시간 500ms → 5ms 단축, 캐시 히트율 85% 달성</li>
+                                    <li>커서 기반 페이지네이션으로 대용량 로그 순차 조회 시 응답 시간 93% 단축</li>
+                                    <li>Full-Text Search 구현으로 다중 컬럼 키워드 검색 성능 개선</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 프로젝트 3: 백오피스 시스템 설계 및 개발 -->
+                <div class="project">
+                    <div class="project-left">
+                        <div class="project-period">2023.09 ~ 2024.03</div>
+                        <h4 class="project-name">🔧 백오피스 시스템 설계 및 개발</h4>
+                        <div class="project-tech">
+                            <span class="tech-badge">Spring Boot 3.2.x</span>
+                            <span class="tech-badge">JPA</span>
+                            <span class="tech-badge">MySQL 8</span>
+                            <span class="tech-badge">MessageSource</span>
+                            <span class="tech-badge">JUnit 5</span>
+                            <span class="tech-badge">Mockito</span>
+                        </div>
+                    </div>
+
+                    <div class="project-right">
+                        <div class="project-detail">
+                            <h5>반복 업무 자동화로 효율 90% 향상</h5>
+                            <ul>
+                                <li>라이선스 관리 업무를 자동화하여 사업팀의 생산성을 크게 향상</li>
+                                <li>고객사별 라이선스 발급, 갱신, 회수 등 핵심 업무 자동화</li>
+                                <li>수동 처리 시 평균 10분 소요되던 작업을 1분으로 단축 (90% 개선)</li>
+                            </ul>
+                        </div>
+
+                        <div class="project-detail">
+                            <h5>글로벌 서비스를 위한 국제화 시스템</h5>
+                            <ul>
+                                <li>해외 고객사 지원을 위해 코드 변경 없이 언어를 확장할 수 있는 구조 구축</li>
+                                <li>Spring MessageSource로 한국어/영어/일본어 지원</li>
+                                <li>코드 변경 없는 언어 확장 구조로 글로벌 서비스 확장 속도 향상</li>
+                            </ul>
+                        </div>
+
+                        <div class="project-detail">
+                            <h5>테스트 코드로 안정성 확보</h5>
+                            <ul>
+                                <li>테스트 코드가 전무했던 프로젝트에 단위 테스트를 도입하여 코드 안정성 확보</li>
+                                <li>JUnit 5와 Mockito 기반 테스트 프레임워크 구축</li>
+                                <li>모든 비즈니스 로직에 단위 테스트 작성</li>
+                                <li>테스트 커버리지 확보로 코드 수정 및 배포 안정성 향상</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Activities Section -->
+    <section id="education">
+        <div class="container">
+            <h2>교육 및 활동</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2025.08 ~ 진행중</div>
+                    <div class="timeline-content">
+                        <h3>오픈 소스 기여모임</h3>
+                        <p>9기 활동</p>
+                        <p>활동 기간 내 오픈소스 프로젝트 2건 기여 완료</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2024.11 ~ 2025.03</div>
+                    <div class="timeline-content">
+                        <h3>글또 개발자 글쓰기 커뮤니티</h3>
+                        <p>10기 참여</p>
+                        <p>활동 기간 내 기술 블로그 17건 작성</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2022.06</div>
+                    <div class="timeline-content">
+                        <h3>SQL 개발자</h3>
+                        <p>한국데이터산업진흥원</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2021.03</div>
+                    <div class="timeline-content">
+                        <h3>한성대학교 졸업</h3>
+                        <p>IT 융합 공학부 사이버 보안 트랙 학사</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about">
+        <div class="container">
+            <h2>그래서 저는요</h2>
+            <div class="intro-text">
+                <p>🧑‍💻 MBTI는 INFP로서 팀원들의 의견을 경청하고 존중하며 원할한 협을 이끌어냅니다.</p>
+                <p>🔍 근본 원인을 찾아 해결하는 것을 즐기며, 문제의 본질을 파고듭니다.</p>
+                <p>🛠️ 기획부터 운영까지 전 과정을 경험하며 시스템 전체를 아우르는 시각을 갖추었습니다.</p>
+                <p>📝 기술 블로그 작성(17건)과 오픈소스 기여(2건)를 통해 지식을 공유하며 성장합니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2>읽어주셔서 감사합니다.</h2>
+            <div class="contact-links">
+                <a href="https://github.com/SANGWOO-JOO" target="_blank">GitHub</a>
+                <a href="https://garner-away.tistory.com/" target="_blank">Blog</a>
+                <a href="mailto:turncoat19@gmail.com">Email</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+        </div>
+    </footer>
+</body>
+</html>
