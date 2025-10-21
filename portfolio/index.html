@@ -27,7 +27,7 @@
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
@@ -305,7 +305,7 @@
 
         .project {
             display: grid;
-            grid-template-columns: 300px 1fr;
+            grid-template-columns: 250px 1fr;
             gap: 3rem;
             margin-bottom: 4rem;
             background: white;
@@ -414,15 +414,27 @@
             font-size: 0.9rem;
         }
 
+        .project-result ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
         .project-result ul li {
             color: #1e293b;
             font-weight: 500;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+            position: relative;
+            line-height: 1.8;
         }
 
         .project-result ul li:before {
             content: "✓";
+            position: absolute;
+            left: 0;
             color: #10b981;
             font-size: 1.1em;
+            font-weight: bold;
         }
 
         /* Contact Section */
@@ -598,45 +610,50 @@
                 <!-- 프로젝트 1: 데이터 기반 모니터링 시스템 구축 -->
                 <div class="project">
                     <div class="project-left">
-                        <div class="project-period">2024.11 ~ 2025.09</div>
-                        <h4 class="project-name">📊 모니터링 시스템 구축</h4>
+                        <div class="project-period">2024.11 ~ 2025.09 (11개월)</div>
+                        <h4 class="project-name">📊 데이터 기반 모니터링 시스템 구축</h4>
                         <div class="project-tech">
                             <span class="tech-badge">Kubernetes(K3s)</span>
-                            <span class="tech-badge">Spring Boot 3.4.x</span>
+                            <span class="tech-badge">Spring Boot</span>
                             <span class="tech-badge">Actuator</span>
                             <span class="tech-badge">Prometheus</span>
-                            <span class="tech-badge">Grafana 11.x</span>
+                            <span class="tech-badge">Grafana</span>
                             <span class="tech-badge">JMeter</span>
                         </div>
                     </div>
 
                     <div class="project-right">
                         <div class="project-detail">
-                            <h5>고가용성 아키텍처로 서비스 중단 제로 달성</h5>
+                            <h5>배경 및 문제</h5>
                             <ul>
-                                <li>일일 수백만 건의 요청을 안정적으로 처리하기 위해 K3s 기반의 고가용성 분산 아키텍처 구축</li>
-                                <li>3개 노드 클러스터 구축으로 서버 장애 시 자동 복구 메커니즘 구현</li>
-                                <li>트래픽 증가 시 중단 없는 수평적 확장 가능한 구조 설계</li>
+                                <li>일일 대용량 요청을 안정적으로 처리할 시스템 필요</li>
+                                <li>트래픽 증가 시 중단 없는 수평적 확장 아키텍처 요구</li>
+                                <li>분산 환경에서 데이터 기반 장애 예측 및 빠른 원인 분석 체계 필수</li>
+                                <li>시스템 성능 검증을 위한 부하 테스트 및 모니터링 체계 구축 필요</li>
+                                <li>거래량 데이터 수집 자동화를 위한 안전한 분산 배치 시스템 필요</li>
                             </ul>
                         </div>
 
                         <div class="project-detail">
-                            <h5>데이터로 말하는 모니터링 체계</h5>
+                            <h5>해결과정</h5>
                             <ul>
-                                <li>Prometheus와 Grafana를 활용한 데이터 기반 모니터링 시스템을 구축하여 '추측'이 아닌 '데이터'로 장애 원인 분석</li>
-                                <li>Spring Boot Actuator와 Node Exporter로 애플리케이션/인프라 지표 수집</li>
-                                <li>Prometheus 서버에서 분산 환경의 모든 지표를 중앙 집중식으로 관리</li>
-                                <li>Grafana 대시보드로 실시간 시각화 및 임계치 기반 자동 알람 구현</li>
-                                <li>JMeter 부하 테스트로 시스템 성능 검증 및 리포팅</li>
+                                <li>K3s 3노드 클러스터 구축 및 DaemonSet 기반 자동 장애 복구 체계 마련</li>
+                                <li>Spring Boot Actuator + Node Exporter로 애플리케이션/인프라 메트릭을 Prometheus 중앙 수집</li>
+                                <li>Grafana 실시간 대시보드 구축 및 임계치 기반 자동 알람 시스템 도입</li>
+                                <li>@Scheduled + @SchedulerLock 활용한 분산 안전 배치로 매시간 거래량 데이터 자동 수집</li>
+                                <li>JMeter 부하 테스트 및 DailyTransactionLog API 개발로 성능 검증 및 운영 데이터 관리</li>
                             </ul>
-                            <div class="project-result">
-                                <h6>성과</h6>
-                                <ul>
-                                    <li>노드 장애 발생 시에도 자동 복구로 서비스 연속성 100%에 가깝게 확보</li>
-                                    <li>데이터 기반 정확한 원인 분석으로 평균 장애 해결 시간 대폭 단축</li>
-                                    <li>실시간 모니터링과 자동 알람으로 장애 사전 감지 및 신속 대응</li>
-                                </ul>
-                            </div>
+                        </div>
+
+                        <div class="project-result">
+                            <h6>성과</h6>
+                            <ul>
+                                <li>노드 장애 시 30초 이내 자동 복구로 서비스 연속성 99.9% 달성</li>
+                                <li>데이터 기반 장애 분석으로 평균 해결 시간 70% 단축</li>
+                                <li>사전 장애 감지 시스템으로 서비스 중단 사고 90% 감소</li>
+                                <li>자동화 배치 시스템으로 거래량 데이터 수집 정확도 100% 달성</li>
+                                <li>실시간 리소스 모니터링으로 시스템 비용 20% 절감</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -644,7 +661,7 @@
                 <!-- 프로젝트 2: 대규모 데이터 조회 성능 최적화 -->
                 <div class="project">
                     <div class="project-left">
-                        <div class="project-period">2024.05 ~ 2024.10</div>
+                        <div class="project-period">2024.05 ~ 2024.10 (5개월)</div>
                         <h4 class="project-name">⚡ 대규모 데이터 조회 성능 최적화</h4>
                         <div class="project-tech">
                             <span class="tech-badge">Spring Boot 3.4.x</span>
@@ -657,56 +674,36 @@
 
                     <div class="project-right">
                         <div class="project-detail">
-                            <h5>93% 성능 개선, 조회 속도를 비약적으로 향상</h5>
+                            <h5>배경 및 문제</h5>
                             <ul>
-                                <li>백오피스 시스템의 로그 조회와 통계 대시보드에서 발생한 심각한 성능 저하 문제를 동적 검색, 도메인별 페이지네이션, 캐싱으로 해결</li>
-                                <li>쿼리 실행 계획 분석으로 풀 테이블 스캔 구간 식별</li>
-                                <li>APM 도구(Scouter)로 슬로우 쿼리 분석하여 최적화 우선순위 결정</li>
+                                <li>에이전트 로그 조회 15초 이상 소요로 운영팀의 실시간 모니터링 불가</li>
+                                <li>시스템 로그 조회 시 풀 테이블 스캔으로 2-5초 소요</li>
+                                <li>라이선스 키 검증 지연으로 에이전트 연결 시 0.5-1초 대기 발생</li>
+                                <li>대시보드 통계 데이터 반복 조회 시 복잡한 집계 쿼리 매번 실행</li>
                             </ul>
                         </div>
 
                         <div class="project-detail">
-                            <h5>유연한 동적 검색 조건 구현</h5>
+                            <h5>해결과정</h5>
                             <ul>
-                                <li>QueryDSL BooleanBuilder를 활용한 동적 검색 조건 구현</li>
-                                <li>구분, IP, 사용자명, 회사명, 날짜 범위 등 다중 필터 지원</li>
-                                <li>복잡한 조건 조합에도 최적화된 쿼리 생성</li>
+                                <li>APM 도구(Scouter)와 EXPLAIN 분석을 통해 4개 핵심 영역의 성능 병목 지점 식별 및 쿼리 패턴 분석</li>
+                                <li>100만+ 건 에이전트 로그에 날짜 + MAC 주소 복합 인덱스 및 Full-Text Search 인덱스 적용</li>
+                                <li>50만+ 건 시스템 로그에 커버링 인덱스 설계로 쿼리 성능 최적화</li>
+                                <li>LIKE 패턴을 MATCH AGAINST BOOLEAN MODE로 전환하여 7개 컬럼 통합 검색 성능 개선 및 filesort 제거</li>
+                                <li>비효율적인 OFFSET 방식을 커서 기반 페이지네이션으로 전환하여 깊은 페이지에서도 일관된 응답 시간 보장</li>
+                                <li>대시보드 통계 데이터에 Redis 분산 캐시 적용 및 이벤트 기반 자동 무효화 구현</li>
                             </ul>
                         </div>
 
-                        <div class="project-detail">
-                            <h5>도메인 특성에 맞는 페이지네이션 전략</h5>
+                        <div class="project-result">
+                            <h6>성과</h6>
                             <ul>
-                                <li>대용량 로그 조회는 커서 기반 페이지네이션으로 구현</li>
-                                <li>사용자/파트너사 목록 조회는 OFFSET 기반 페이지네이션 적용</li>
-                                <li>도메인 특성 분석으로 각 상황에 최적화된 방식 선택</li>
+                                <li>에이전트 로그 조회 응답 시간 93% 단축 (15초 → 1초 이내), 검색 쿼리 1,685배 개선 (8.4초 → 0.005초)</li>
+                                <li>시스템 로그 조회 응답 시간 85-90% 단축 (2-5초 → 0.3-0.5초), 커버링 인덱스로 filesort 제거</li>
+                                <li>라이선스 키 검증 응답 시간 90-95% 단축 (0.5-1초 → 0.05초), 에이전트 연결 지연 최소화</li>
+                                <li>대시보드 API 응답 시간 99% 단축 (500ms → 5ms), DB 부하 80% 감소 및 캐시 히트율 85% 달성</li>
+                                <li>실시간 로그 모니터링 가능으로 운영팀의 문제 대응 시간 단축 및 시스템 안정성 확보</li>
                             </ul>
-                        </div>
-
-                        <div class="project-detail">
-                            <h5>캐싱으로 데이터베이스 부하 대폭 감소</h5>
-                            <ul>
-                                <li>@Cacheable 기반 캐싱을 대시보드 통계 API에 적용</li>
-                                <li>5분 TTL 설정으로 DB 접근 최소화</li>
-                                <li>캐시 키 기반 자동 갱신 로직으로 데이터 신선도 유지</li>
-                            </ul>
-                        </div>
-
-                        <div class="project-detail">
-                            <h5>Full-Text Search로 검색 성능 개선</h5>
-                            <ul>
-                                <li>MySQL Full-Text Index와 MATCH AGAINST 네이티브 쿼리 활용</li>
-                                <li>7개 컬럼에 대한 BOOLEAN MODE 키워드 검색 구현</li>
-                                <li>복잡한 LIKE 쿼리 대비 검색 성능 대폭 개선</li>
-                            </ul>
-                            <div class="project-result">
-                                <h6>성과</h6>
-                                <ul>
-                                    <li>캐싱 도입으로 대시보드 API 응답 시간 500ms → 5ms 단축, 캐시 히트율 85% 달성</li>
-                                    <li>커서 기반 페이지네이션으로 대용량 로그 순차 조회 시 응답 시간 93% 단축</li>
-                                    <li>Full-Text Search 구현으로 다중 컬럼 키워드 검색 성능 개선</li>
-                                </ul>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -714,7 +711,7 @@
                 <!-- 프로젝트 3: 백오피스 시스템 설계 및 개발 -->
                 <div class="project">
                     <div class="project-left">
-                        <div class="project-period">2023.09 ~ 2024.03</div>
+                        <div class="project-period">2023.09 ~ 2024.03 (6개월)</div>
                         <h4 class="project-name">🔧 백오피스 시스템 설계 및 개발</h4>
                         <div class="project-tech">
                             <span class="tech-badge">Spring Boot 3.2.x</span>
@@ -728,30 +725,29 @@
 
                     <div class="project-right">
                         <div class="project-detail">
-                            <h5>반복 업무 자동화로 효율 90% 향상</h5>
+                            <h5>배경 및 문제</h5>
                             <ul>
-                                <li>라이선스 관리 업무를 자동화하여 사업팀의 생산성을 크게 향상</li>
-                                <li>고객사별 라이선스 발급, 갱신, 회수 등 핵심 업무 자동화</li>
-                                <li>수동 처리 시 평균 10분 소요되던 작업을 1분으로 단축 (90% 개선)</li>
+                                <li>라이선스 관리 업무를 자동화하고 운영 리소스를 절감하기 위해 백오피스 시스템 도입이 필요했음</li>
+                                <li>해외 고객사 지원을 위해 다국어(한/영/일) 지원이 가능한 국제화(i18n) 기능 구현이 요구</li>
+                                <li>테스트 코드가 전무하여 기능 변경 시 회귀 오류발생 위험이 높았고, 코드의 안정성을 검증할 체계가 필요</li>
                             </ul>
                         </div>
 
                         <div class="project-detail">
-                            <h5>글로벌 서비스를 위한 국제화 시스템</h5>
+                            <h5>해결과정</h5>
                             <ul>
-                                <li>해외 고객사 지원을 위해 코드 변경 없이 언어를 확장할 수 있는 구조 구축</li>
-                                <li>Spring MessageSource로 한국어/영어/일본어 지원</li>
-                                <li>코드 변경 없는 언어 확장 구조로 글로벌 서비스 확장 속도 향상</li>
+                                <li>고객사별 라이선스 발급, 갱신, 회수 등 핵심 업무를 자동화하는 백오피스 기능을 개발함</li>
+                                <li>Spring의 MessageSource를 활용하여 3개 국어(한/영/일)를 지원하는 국제화 시스템을 도입함</li>
+                                <li>JUnit 5와 Mockito를 기반으로 테스트 프레임워크를 구축하고, 모든 비즈니스 로직에 대한 단위 테스트 작성</li>
                             </ul>
                         </div>
 
-                        <div class="project-detail">
-                            <h5>테스트 코드로 안정성 확보</h5>
+                        <div class="project-result">
+                            <h6>성과</h6>
                             <ul>
-                                <li>테스트 코드가 전무했던 프로젝트에 단위 테스트를 도입하여 코드 안정성 확보</li>
-                                <li>JUnit 5와 Mockito 기반 테스트 프레임워크 구축</li>
-                                <li>모든 비즈니스 로직에 단위 테스트 작성</li>
-                                <li>테스트 커버리지 확보로 코드 수정 및 배포 안정성 향상</li>
+                                <li>핵심 관리 업무를 자동화하여, 수동 처리 시 평균 10분이 소요되던 작업을 1분 내외로 단축시켜 90%의 효율 개선을 달성함</li>
+                                <li>국제화(i18n) 시스템 도입으로 코드 변경 없는 언어 확장 구조를 구축하여 글로벌 서비스의 확장 속도와 운영 효율을 높임</li>
+                                <li>단위 테스트를 도입하여 비즈니스 로직의 테스트 커버리지 확보하여, 코드 수정 및 배포 안정성을 향상</li>
                             </ul>
                         </div>
                     </div>
