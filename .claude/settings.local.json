@@ -5,7 +5,10 @@
       "Bash(file:*)",
       "Read(//Users/sangwoo/Desktop/Resume/1021/**)",
       "Bash(git restore portfolio/index.html)",
-      "Read(//Users/sangwoo/Desktop/Resume/1026/**)"
+      "Read(//Users/sangwoo/Desktop/Resume/1026/**)",
+      "Bash(git checkout:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []
