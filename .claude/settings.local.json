@@ -4,7 +4,8 @@
       "Read(//Users/sangwoo/Downloads/**)",
       "Bash(file:*)",
       "Read(//Users/sangwoo/Desktop/Resume/1021/**)",
-      "Bash(git restore portfolio/index.html)"
+      "Bash(git restore portfolio/index.html)",
+      "Read(//Users/sangwoo/Desktop/Resume/1026/**)"
     ],
     "deny": [],
     "ask": []
